@@ -1,0 +1,60 @@
+@ECHO off
+@setlocal
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: 
+:: Note: The Anagram doesn't work if the JAVA_HOME, or JAR_HOME has spaces.  
+:: If the folder location has spaces please put it in "".
+::
+::
+:: JAR_HOME - The location of the jar files
+:: 
+:: JAVA_HOME - The root directory of the Java Development Kit
+::           NOTE: This must be a JDK and must version 1.6.x or higher
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+set JAR_HOME="..\com.solutions.anagram-1.0\lib"
+:: set java_home to JDK 1.6
+set JAVA_HOME="C:\Program Files\Java\jdk1.6.0_21"
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Get the Command Arguments - Input String 1  &  Input String 2
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+set IPSTR1=%1
+set IPSTR2=%2
+if not "%~1" == "" goto checkIPType
+echo Your must pass in either input string as the command line agrument
+goto error
+:checkIPType
+if not "%~2" == "" goto checkJAR
+echo Your must pass in either input string as the command line agrument
+goto error
+:checkJAR
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Try to determine if JAR_HOME contains spaces
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+if exist %JAR_HOME%\*.jar goto checkJava
+echo Your JAR_HOME does not contain any jars.
+
+:checkJava
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Check for JAVA_HOME
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+if not x==%JAVA_HOME% goto have_java_home
+  echo "** ERROR: JAVA_HOME variable not set. Sorry, can't find java command."
+  goto ERROR
+if not exist "%JAVA_HOME%\bin\java.exe" goto ERROR
+
+
+:have_java_home
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Set standard command for invoking Java.
+:: Note that NT requires a window name argument when using start.
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+set _RUNJAVA=%JAVA_HOME%\bin\java
+set _RUNJAVAW=%JAVA_HOME%\bin\javaw
+
+
+%_RUNJAVA% -jar %JAR_HOME%\com.solutions.anagram-1.0.jar %IPSTR1% %IPSTR2%
+
+
+:error

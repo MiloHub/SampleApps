@@ -1,0 +1,49 @@
+<assembly>
+	<id>anagramfinder</id>
+	<formats>
+		<format>zip</format>
+
+	</formats>
+	<dependencySets>
+		<dependencySet>
+			<includes>
+				<include>*:jar:*</include>
+			</includes>
+
+			<outputDirectory>lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+
+	<fileSets>
+		<fileSet>
+			<useDefaultExcludes />
+			<excludes>
+				<exclude>**/target/**</exclude>
+				<exclude>**/.settings/**</exclude>
+				<exclude>**/log/**</exclude>
+				<exclude>**/src/**</exclude>
+				<exclude>**/*.xml</exclude>
+				<exclude>**/*.classpath</exclude>
+				<exclude>**/*.project</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+	<files>
+
+		<file>
+			<source>src/assembly/readme.txt</source>
+			<destName>readme.txt</destName>
+			<outputDirectory></outputDirectory>
+		</file>
+		<file>
+			<source>src/assembly/anagram-utility.bat</source>
+			<destName>anagram-utility.bat</destName>
+			<outputDirectory>bin</outputDirectory>
+		</file>
+		<file>
+			<source>src/assembly/anagram-utility.sh</source>
+			<destName>anagram-utility.sh</destName>
+			<outputDirectory>bin</outputDirectory>
+		</file>
+	</files>
+</assembly>  

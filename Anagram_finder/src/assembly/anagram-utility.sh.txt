@@ -1,0 +1,5 @@
+#
+##::           
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+/usr/java6/bin/java -jar /home/com.5am.anagram-1.0-anagramfinder\com.5am.anagram-1.0\lib\com.solutions.anagram-1.0.jar $1 $2 
+ 
